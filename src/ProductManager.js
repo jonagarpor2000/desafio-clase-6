@@ -18,7 +18,7 @@ const {promises: fs, readFile,writeFile} = import ('fs');
  *  @default
  */
 
-class ProductManager{
+export default class ProductManager{
 
  /**
      * @type {Array<Product>}
@@ -39,7 +39,7 @@ path;
      this.path = path
  }
     getProducts = async() =>{
-    let val = await this.#readfilecontent(this.path)
+        let val = await this.#readfilecontent(this.path)
     return val;
     }
 
@@ -91,13 +91,13 @@ path;
     }
 
     #readfilecontent = async (path) => {
+        console.log(`La ruta es ${path}`)
         try{
             const contenido = await fs.readFile(path,'utf-8')
-            //JSON.parse(contenido)
             return JSON.parse(contenido)
         }catch (error){
 
-            return [] //No es necesario lanzar error, simplemente se retorna vacio
+            return []
         }
     }
 
@@ -125,7 +125,6 @@ path;
     deleteProduct = async (id)=>{
         let content = await this.getProducts()
         let cont_nodelete = content.filter(producto => producto.id != id)
-        //console.log('No deletees esto:',cont_nodelete)
         await fs.writeFile(this.path, JSON.stringify(cont_nodelete, null,'\t'),'utf-8')
     }
 
@@ -154,7 +153,6 @@ path;
     };
 }
 
-export default ProductManager;
 
 
 

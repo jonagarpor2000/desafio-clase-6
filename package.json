@@ -2,17 +2,20 @@
   "name": "desafio-clase-6",
   "version": "1.0.0",
   "description": "Desafio con express",
-  "type": "module",
   "main": "./src/app.js",
   "scripts": {
     "start": "node ./src/app.js",
     "dev": "node --watch ./src/app.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start:dev": "nodemon ./src/app.js"
   },
+  "type": "module",
   "keywords": [],
   "author": "Jonathan Garcia",
   "license": "ISC",
   "dependencies": {
     "express": "^4.19.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.0"
   }
 }
