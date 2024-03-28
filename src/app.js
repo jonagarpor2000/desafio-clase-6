@@ -1,14 +1,26 @@
 import express from 'express'
 import ProductManager  from './ProductManager.js'
 const app = express()
-const pmg = new ProductManager()
+
+const path_products = './file/products.json'
+const pmg = new ProductManager(path_products)
 let users = []
 
 app.use(express.json)
 app.use(express.urlencoded({extended:true}))
 
+
+app.get('/', (req, res) => {
+    res.send('<h1>Hola Mundo</h1>')
+})
 app.get('/products', (req, res) => {
-    res.send(`Test`)
+    let content
+    read = async () => {
+        content = await pmg.getProducts()
+    }
+
+    read()
+    res.send(content)
     //res.send({status:'success',payload:pmg.getProducts()})
     //res.status(404).send("Coso")
 })
