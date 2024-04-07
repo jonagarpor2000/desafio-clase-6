@@ -131,3 +131,4 @@ dist
 
 #File used to probe express features
 test.js
+test/

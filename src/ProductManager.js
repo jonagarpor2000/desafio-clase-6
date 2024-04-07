@@ -1,6 +1,7 @@
 import path from 'path';
 
-const {promises: fs, readFile,writeFile} = import ('fs');
+//const {promises: fs, readFile,writeFile} = import ('fs');
+import { promises as fs } from "fs"
 
 /***
  * @typedef {Object} Product
@@ -91,12 +92,11 @@ path;
     }
 
     #readfilecontent = async (path) => {
-        console.log(`La ruta es ${path}`)
         try{
             const contenido = await fs.readFile(path,'utf-8')
             return JSON.parse(contenido)
         }catch (error){
-
+            console.log(`La ruta ${path} es incorrecta ya que: ${error}`)
             return []
         }
     }
@@ -152,8 +152,6 @@ path;
 
     };
 }
-
-
 
 
 
