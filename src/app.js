@@ -7,9 +7,6 @@ const app = express()
 const path_products = __dirname+'/file/products.json'
 const pmg = new ProductManager(path_products)
 
-//app.use(express.json)
-//app.use(express.urlencoded({extended:true}))
-
 
 app.get('/', (req, res) => {
     res.send({status:'success',payload: 'Hola mundo'})
@@ -25,6 +22,12 @@ app.get('/products', async (req, res) => {
     res.send({status:'success',payload: trimmedprods})
 })
 
+app.get('/products/:pid', async (req, res) => {
+    const {pid} = req.params
+    let id = parseInt(pid)
+    const readprods = await pmg.getProductById(id)
+    res.send({status:'success',payload: readprods})
+})
 
 app.listen(expressport,(error)=>{
     if(error) return console.log(error)
